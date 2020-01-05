@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queue
+  template:
+    metadata:
+      labels:
+        app: queue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: queue
+spec:
+  ports:
+  - port: 61616
+    targetPort: 61616
+  selector:
+    app: queue
